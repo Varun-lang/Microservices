@@ -1,0 +1,24 @@
+version: '3.7'
+
+services:
+  currency-service:
+    image: in28min/ms-currency-service:0.0.1-SNAPSHOT
+    mem_limit : 700m
+    ports:
+      - "8000:8000"
+    networks:
+      - currency-network
+      
+    depends_on: 
+      - Eureka-server
+      
+  Eureka-server:
+    image: library/in28min-ms-eureka-server:0.0.1-SNAPSHOT
+    mem_limit : 700m
+    ports:
+      - "8761:8761"
+    networks:
+      - currency-network
+
+networks:
+  currency-network :
